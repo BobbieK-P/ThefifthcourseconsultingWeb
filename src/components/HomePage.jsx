@@ -38,8 +38,8 @@ const HomePage = ({ setPage }) => {
     <div style={{ background: '#fff' }}>
       {/* HERO */}
       <section style={{ background: '#1A2744', padding: isMobile ? '56px 24px 48px' : '88px 48px 80px', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: -80, right: -80, width: 360, height: 360, border: '1px solid rgba(162,112,33,0.14)', borderRadius: '50%' }} />
-        <div style={{ position: 'absolute', bottom: -50, right: 80, width: 200, height: 200, border: '1px solid rgba(162,112,33,0.09)', borderRadius: '50%' }} />
+        <div style={{ position: 'absolute', top: -80, right: -80, width: 360, height: 360, border: '1px solid rgba(162,112,33,0.14)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: -50, right: 80, width: 200, height: 200, border: '1px solid rgba(162,112,33,0.09)', borderRadius: '50%', pointerEvents: 'none' }} />
         <Eyebrow>Specialist hospitality consultancy</Eyebrow>
         <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? 38 : 60, fontWeight: 500, lineHeight: 1.1, color: '#fff', margin: '0 0 24px', maxWidth: 580 }}>
           Running a great food<br />business is hard enough.<br /><em style={{ fontStyle: 'italic', color: '#A27021' }}>Running a profitable one</em><br />takes something more.
