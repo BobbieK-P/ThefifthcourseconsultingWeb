@@ -48,7 +48,7 @@ const ContactPage = () => {
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 40 : 52, marginTop: 52 }}>
           {/* Contact details */}
           <div>
-            {[['Email', 'hello@thefifthcourseconsulting.co.uk'], ['Website', 'thefifthcourseconsulting.co.uk'], ['Location', 'West Midlands, UK']].map(([k, v]) => (
+            {[['Email', 'hello@thefifthcourseconsulting.co.uk'], ['Phone', '07368 168 888'], ['Website', 'thefifthcourseconsulting.co.uk'], ['Location', 'West Midlands, UK']].map(([k, v]) => (
               <div key={k} style={{ marginBottom: 16 }}>
                 <div style={{ fontSize: 10, letterSpacing: '0.13em', textTransform: 'uppercase', color: '#A27021', marginBottom: 3, fontWeight: 500 }}>{k}</div>
                 <div style={{ fontSize: 14, color: '#1A2744' }}>{v}</div>

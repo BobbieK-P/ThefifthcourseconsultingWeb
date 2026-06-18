@@ -117,7 +117,7 @@ const HomePage = ({ setPage }) => {
         <div>
           <Eyebrow>About Kendal</Eyebrow>
           <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? 28 : 34, fontWeight: 500, color: '#fff', margin: '0 0 14px' }}>Meet Kendal Pierce</h3>
-          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: '0 0 22px', lineHeight: 1.75 }}>I spent over a decade in hospitality — from silver service and shift supervision through to General Manager Designate. I started The Fifth Course because good independent operators deserve practical, honest support built on real experience.</p>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: '0 0 22px', lineHeight: 1.75 }}>I spent over a decade working across every level of hospitality — from silver service and shift supervision through to being the trusted manager sent in to lead and turn around other people's businesses. I started The Fifth Course because good independent operators deserve practical, honest support built on real experience.</p>
           <button className="btn-ghost" onClick={() => setPage('About')} style={{ background: 'transparent', color: '#fff', padding: '9px 22px', borderRadius: 2, border: '1px solid rgba(255,255,255,0.28)', fontSize: 12, letterSpacing: '0.07em', textTransform: 'uppercase' }}>More about me</button>
         </div>
       </div>
