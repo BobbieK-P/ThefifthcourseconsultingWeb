@@ -6,8 +6,9 @@ const SERVICE_ID  = 'service_ua48i07';
 const TEMPLATE_ID = 'template_002yzsz';
 const PUBLIC_KEY  = 'bTsAWV7L3JdMV1uev';
 
-const ContactPage = () => {
-  const [form, setForm] = useState({ name: '', business: '', email: '', phone: '', service: '', message: '' });
+const ContactPage = ({ initialService = '' }) => {
+  const [form, setForm] = useState({ name: '', business: '', email: '', phone: '', service: initialService, message: '' });
+  const isChristmasCheck = form.service.startsWith('Christmas');
   const [status, setStatus] = useState('idle');
   const isMobile = useIsMobile();
 
@@ -73,7 +74,7 @@ const ContactPage = () => {
           {status === 'success' ? (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', background: '#F0F4F8', borderRadius: 6, padding: 48 }}>
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 32, fontWeight: 500, color: '#1A2744', marginBottom: 12 }}>Thank you.</div>
-              <p style={{ fontSize: 14, color: '#6B6560', lineHeight: 1.75, maxWidth: 320 }}>We'll be in touch within four business hours to arrange your free discovery call.</p>
+              <p style={{ fontSize: 14, color: '#6B6560', lineHeight: 1.75, maxWidth: 320 }}>{isChristmasCheck ? "We'll be in touch within four business hours to confirm your check and tell you what to send." : "We'll be in touch within four business hours to arrange your free discovery call."}</p>
               <button onClick={() => { setStatus('idle'); setForm({ name: '', business: '', email: '', phone: '', service: '', message: '' }); }} style={{ marginTop: 24, background: 'transparent', color: '#1A2744', padding: '10px 24px', borderRadius: 2, border: '1px solid #C4BAB0', fontSize: 12, letterSpacing: '0.07em', textTransform: 'uppercase' }}>Send another</button>
             </div>
           ) : (
@@ -100,6 +101,8 @@ const ContactPage = () => {
                 <label style={{ fontSize: 12, color: '#6B6560', display: 'block', marginBottom: 6 }}>Service of interest</label>
                 <select value={form.service} onChange={e => setForm({ ...form, service: e.target.value })} style={{ ...inputStyle, background: '#fff', appearance: 'none' }}>
                   <option value="">Please select...</option>
+                  <option>Christmas Menu GP Check</option>
+                  <option>Christmas Bar Margin Check</option>
                   <option>Operational Audit</option>
                   <option>Menu Engineering</option>
                   <option>Revenue Strategy</option>
@@ -111,7 +114,12 @@ const ContactPage = () => {
               </div>
               <div style={{ marginBottom: 16 }}>
                 <label style={{ fontSize: 12, color: '#6B6560', display: 'block', marginBottom: 6 }}>Tell us about your business</label>
-                <textarea value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="A brief description of your venue and the challenge you're facing…" style={{ ...inputStyle, height: 96, resize: 'none' }} />
+                <textarea value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder={isChristmasCheck ? 'Your venue, and roughly how many dishes or drinks lines the check will cover…' : "A brief description of your venue and the challenge you're facing…"} style={{ ...inputStyle, height: 96, resize: 'none' }} />
+                {isChristmasCheck && (
+                  <div style={{ fontSize: 12, color: '#6B6560', marginTop: 8, lineHeight: 1.6 }}>
+                    No need to attach anything yet. We'll reply within four business hours to confirm and tell you where to send your menu, price list and invoices.
+                  </div>
+                )}
               </div>
               {status === 'error' && (
                 <div style={{ marginBottom: 14, padding: '10px 14px', background: '#fff0f0', border: '1px solid #e0a0a0', borderRadius: 2, fontSize: 12, color: '#9b2020' }}>

@@ -1,4 +1,5 @@
 import useIsMobile from '../hooks/useIsMobile';
+import { christmasChecksOpen } from './ChristmasChecksPage';
 
 const Footer = ({ setPage }) => {
   const isMobile = useIsMobile();
@@ -23,6 +24,9 @@ const Footer = ({ setPage }) => {
         {['Operational Audit', 'Menu Engineering', 'Revenue Strategy', 'Operations Optimisation', 'Technology Consulting', 'Retained Advisory'].map(s => (
           <div key={s} onClick={() => setPage('Services')} style={{ fontSize: 13, color: 'rgba(255,255,255,0.48)', marginBottom: 9, cursor: 'pointer' }}>{s}</div>
         ))}
+        {christmasChecksOpen() && (
+          <div onClick={() => setPage('Christmas Checks')} style={{ fontSize: 13, color: '#A27021', marginBottom: 9, cursor: 'pointer' }}>Christmas Checks</div>
+        )}
       </div>
       <div>
         <div style={{ fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#A27021', marginBottom: 16, fontWeight: 500 }}>Company</div>
