@@ -12,6 +12,7 @@
   --font-body: 'DM Sans', Helvetica, sans-serif;
 }
 html, body, #root { height: 100%; }
+html, body { overflow-x: hidden; }
 body {
   font-family: var(--font-body);
   color: var(--navy);
@@ -51,3 +52,19 @@ main > div { animation: fadeIn 0.28s ease; }
 
 .faq-item { transition: background 0.15s; }
 .faq-item:hover { background: #fafaf9; }
+
+/* Blog articles */
+.post-body { color: var(--navy); font-size: 16px; line-height: 1.75; }
+.post-body > * + * { margin-top: 1.1em; }
+.post-body h2 { font-family: var(--font-display); font-size: 30px; font-weight: 500; line-height: 1.2; margin-top: 2em; color: var(--navy); }
+.post-body h3 { font-size: 18px; font-weight: 500; margin-top: 1.6em; }
+.post-body p { color: #3d4457; }
+.post-body strong { color: var(--navy); font-weight: 500; }
+.post-body em { color: var(--grey); }
+.post-body a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+.post-body a:hover { color: #8c5f1a; }
+.post-body ul, .post-body ol { padding-left: 1.3em; color: #3d4457; }
+.post-body li + li { margin-top: 0.4em; }
+.post-body hr { border: none; border-top: 1px solid var(--rule); margin: 2.5em 0 1.5em; }
+.post-body hr + p { font-size: 13px; line-height: 1.65; }
+@media (max-width: 767px) { .post-body { font-size: 15px; } .post-body h2 { font-size: 26px; } }
