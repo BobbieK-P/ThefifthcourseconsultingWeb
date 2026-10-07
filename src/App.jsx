@@ -8,6 +8,7 @@ import WorkWithUsPage from './components/WorkWithUsPage';
 import InsightsPage from './components/InsightsPage';
 import ContactPage from './components/ContactPage';
 import ChristmasChecksPage, { christmasChecksOpen } from './components/ChristmasChecksPage';
+import PostPage from './components/PostPage';
 
 // Each page has a short web address, e.g. thefifthcourseconsulting.co.uk/#christmas
 const SLUGS = {
@@ -19,8 +20,11 @@ const SLUGS = {
   'Contact': 'contact',
   'Christmas Checks': 'christmas',
 };
+// Blog articles live at #insights/<article-slug>
+const slugForPage = (page) => page.startsWith('Post:') ? `insights/${page.slice(5)}` : (SLUGS[page] || 'home');
 const pageFromHash = () => {
   const slug = window.location.hash.replace('#', '').toLowerCase();
+  if (slug.startsWith('insights/') && slug.length > 9) return `Post:${slug.slice(9)}`;
   return Object.keys(SLUGS).find(p => SLUGS[p] === slug) || null;
 };
 
@@ -32,7 +36,7 @@ const App = () => {
 
   useEffect(() => {
     sessionStorage.setItem('tfc_page', page);
-    const slug = SLUGS[page] || 'home';
+    const slug = slugForPage(page);
     if (window.location.hash !== `#${slug}`) window.history.pushState(null, '', `#${slug}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [page]);
@@ -53,7 +57,9 @@ const App = () => {
       case 'Insights':         return <InsightsPage setPage={goTo} />;
       case 'Contact':          return <ContactPage setPage={goTo} initialService={contactService} />;
       case 'Christmas Checks': return <ChristmasChecksPage setPage={setPage} setContactService={setContactService} />;
-      default:                 return <HomePage setPage={goTo} />;
+      default:
+        if (page.startsWith('Post:')) return <PostPage slug={page.slice(5)} setPage={goTo} />;
+        return <HomePage setPage={goTo} />;
     }
   };
 
@@ -70,7 +76,7 @@ const App = () => {
             <strong style={{ fontWeight: 500 }}>Christmas Menu &amp; Bar Checks</strong> · Know your festive margins in 72 hours · <span style={{ textDecoration: 'underline' }}>Find out more</span>
           </div>
         )}
-        <Nav currentPage={page} setPage={goTo} />
+        <Nav currentPage={page.startsWith('Post:') ? 'Insights' : page} setPage={goTo} />
         <main key={page}>{renderPage()}</main>
         <Footer setPage={goTo} />
       </div>

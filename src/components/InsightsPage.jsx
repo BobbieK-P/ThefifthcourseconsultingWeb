@@ -1,6 +1,8 @@
 import useIsMobile from '../hooks/useIsMobile';
+import { POSTS } from '../posts';
 
-const POSTS = [
+// Topics planned for future articles (shown as "Coming soon", not clickable)
+const UPCOMING = [
   { tag: 'Menu', title: "Why your menu is probably too long — and what to do about it", excerpt: "Most independent operators have added dishes over time without a systematic review. Here's what the data says about menu length and profitability." },
   { tag: 'Finance', title: "The four numbers every independent restaurant owner should know", excerpt: "GP percentage, labour cost ratio, RevPASH, and average cover spend. If you don't know these weekly, you're flying blind." },
   { tag: 'Operations', title: "What a good operational audit actually looks at — and what it finds", excerpt: "The areas where independent venues consistently over-spend, under-perform and leave money on the table." },
@@ -27,17 +29,27 @@ const InsightsPage = ({ setPage }) => {
 
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 20, marginTop: 44 }}>
           {POSTS.map(p => (
-            <div key={p.title} className="insight-card" style={{ border: '1px solid #C4BAB0', borderRadius: 6, padding: 26, background: '#fff', cursor: 'pointer' }}>
-              <div style={{ fontSize: 10, letterSpacing: '0.13em', textTransform: 'uppercase', color: '#A27021', marginBottom: 11, fontWeight: 500 }}>{p.tag}</div>
-              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 21, fontWeight: 600, color: '#1A2744', lineHeight: 1.26, margin: '0 0 9px' }}>{p.title}</div>
+            <a key={p.slug} href={`#insights/${p.slug}`} onClick={(e) => { e.preventDefault(); setPage(`Post:${p.slug}`); }} className="insight-card" style={{ display: 'block', border: '1px solid #C4BAB0', borderRadius: 6, padding: 26, background: '#fff', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, marginBottom: 11 }}>
+                <span style={{ fontSize: 10, letterSpacing: '0.13em', textTransform: 'uppercase', color: '#A27021', fontWeight: 500 }}>{p.tag}</span>
+                <span style={{ fontSize: 11, color: '#6B6560' }}>{p.dateLabel}</span>
+              </div>
+              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 22, fontWeight: 600, color: '#1A2744', lineHeight: 1.26, margin: '0 0 9px' }}>{p.title}</div>
+              <p style={{ fontSize: 13, color: '#6B6560', lineHeight: 1.65, margin: '0 0 16px' }}>{p.excerpt}</p>
+              <span style={{ fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#1A2744', fontWeight: 500 }}>Read the article →</span>
+            </a>
+          ))}
+        </div>
+
+        <div style={{ fontSize: 10, letterSpacing: '0.17em', textTransform: 'uppercase', color: '#A27021', margin: '56px 0 18px', fontWeight: 500 }}>Coming soon</div>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 20 }}>
+          {UPCOMING.map(p => (
+            <div key={p.title} style={{ border: '1px dashed #C4BAB0', borderRadius: 6, padding: 26, background: '#F0F4F8' }}>
+              <div style={{ fontSize: 10, letterSpacing: '0.13em', textTransform: 'uppercase', color: '#6B6560', marginBottom: 11, fontWeight: 500 }}>{p.tag} · Coming soon</div>
+              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 600, color: '#1A2744', lineHeight: 1.26, margin: '0 0 9px' }}>{p.title}</div>
               <p style={{ fontSize: 13, color: '#6B6560', lineHeight: 1.65, margin: 0 }}>{p.excerpt}</p>
             </div>
           ))}
-          <div style={{ background: '#F0F4F8', border: '1px dashed #C4BAB0', borderRadius: 6, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '40px 30px' }}>
-            <div style={{ fontSize: 10, letterSpacing: '0.13em', textTransform: 'uppercase', color: '#A27021', marginBottom: 8, fontWeight: 500 }}>Coming soon</div>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 17, fontWeight: 600, color: '#1A2744', lineHeight: 1.26 }}>More posts every fortnight</div>
-            <p style={{ fontSize: 13, color: '#6B6560', lineHeight: 1.65, margin: '8px 0 0' }}>Written by Kendal Pierce, direct from the field.</p>
-          </div>
         </div>
       </section>
 
