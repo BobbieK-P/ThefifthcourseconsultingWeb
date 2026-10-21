@@ -68,3 +68,9 @@ main > div { animation: fadeIn 0.28s ease; }
 .post-body hr { border: none; border-top: 1px solid var(--rule); margin: 2.5em 0 1.5em; }
 .post-body hr + p { font-size: 13px; line-height: 1.65; }
 @media (max-width: 767px) { .post-body { font-size: 15px; } .post-body h2 { font-size: 26px; } }
+.post-body table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 1.4em; }
+.post-body th, .post-body td { border-bottom: 1px solid var(--rule); padding: 8px 10px; text-align: left; vertical-align: top; }
+.post-body th { background: var(--navy); color: #fff; font-weight: 500; font-size: 12px; letter-spacing: 0.04em; }
+.post-body td:last-child, .post-body th:last-child { text-align: right; white-space: nowrap; }
+.post-body td { color: #3d4457; }
+@media (max-width: 767px) { .post-body table { font-size: 13px; } .post-body th, .post-body td { padding: 7px 6px; } }
